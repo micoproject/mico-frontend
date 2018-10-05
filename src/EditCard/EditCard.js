@@ -1,5 +1,13 @@
 import React, { Component } from "react";
 import update from "immutability-helper";
+import {
+  RIEToggle,
+  RIEInput,
+  RIETextArea,
+  RIENumber,
+  RIETags,
+  RIESelect
+} from "riek";
 
 class EditCard extends Component {
   // Adds a class constructor that assigns the initial state values:
@@ -12,8 +20,7 @@ class EditCard extends Component {
         data: {
           title: props.card.data.title || "",
           description: props.card.data.description || ""
-        },
-        edittitle: false
+        }
       }
     };
 
@@ -21,18 +28,25 @@ class EditCard extends Component {
     this.cancel = props.onCancel.bind(this);
 
     this.setCardTitle = this.setCardTitle.bind(this);
+    this.setCardProperty = this.setCardProperty.bind(this);
+
     this.setCardDescription = this.setCardDescription.bind(this);
     this.saveCard = this.saveCard.bind(this);
     this.onSaveCard = props.onSaveCard.bind(this);
-    this.toggleEditTitle = this.toggleEditTitle.bind(this);
   }
 
-  toggleEditTitle() {
-    var edittitle = this.state.edittitle;
-    this.setState({ edittitle: !edittitle });
+  setCardProperty(prop) {
+    debugger;
+    const name = Object.keys(prop)[0];
+    this.setState({
+      card: update(this.state.card, {
+        data: { [name]: { $set: prop[name] } }
+      })
+    });
   }
 
   setCardTitle(e) {
+    debugger;
     this.setState({
       card: update(this.state.card, {
         data: { title: { $set: e.target.value } }
@@ -53,33 +67,18 @@ class EditCard extends Component {
 
   // The render method contains the JSX code which will be compiled to HTML.
   render() {
-    var title;
-    if (!this.state.edittitle) {
-      title = (
-        <p onClick={this.toggleEditTitle} className="card-header-title">
-          {this.state.card.data.title}
-        </p>
-      );
-    } else {
-      title = (
-        <div className="field">
-          <div className="control">
-            <input
-              className="input"
-              type="text"
-              placeholder="card title"
-              value={this.state.card.data.title}
-              onChange={this.setCardTitle}
-            />
-          </div>
-        </div>
-      );
-    }
-
     return (
       <div className="card">
         <header className="card-header">
-          {title}
+          <p class="card-header-title">
+            <RIEInput
+              value={this.state.card.data.title}
+              change={this.setCardProperty}
+              propName="title"
+              classEditing="input"
+            />
+          </p>
+          {/* {title} */}
           {/* <a href="#" className="card-header-icon" aria-label="more options">
             <span className="icon">
               <i className="fas fa-angle-down" aria-hidden="true" />
@@ -91,13 +90,21 @@ class EditCard extends Component {
           <div className="content">
             <div className="field">
               <div className="control">
-                <input
+                <RIETextArea
+                  value={this.state.card.data.description}
+                  change={this.setCardProperty}
+                  propName="description"
+                  classEditing="input"
+                  rows="10"
+                />
+
+                {/* <input
                   className="input"
                   type="text"
                   placeholder="card title"
                   value={this.state.card.data.description}
                   onChange={this.setCardDescription}
-                />
+                /> */}
               </div>
             </div>
 

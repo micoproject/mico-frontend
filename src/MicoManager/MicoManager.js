@@ -110,9 +110,9 @@ class MicoManager extends Component {
       editedCard: { laneid: laneId, cardid: cardId, data: c }
       //editedCardData: c
     });
-    this.closeModalListener = document.addEventListener("keyup", e => {
-      if (e.keyCode === 27) this.handleCloseModal();
-    });
+    // this.closeModalListener = document.addEventListener("keyup", e => {
+    //   if (e.keyCode === 27) this.handleCloseModal();
+    // });
   }
 
   handleCloseModal() {
