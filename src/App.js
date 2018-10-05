@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.png';
 import './App.css';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "bulma/css/bulma.css";
+import CreateMico from "./CreateMico/CreateMico";
 import MicoManager from "./MicoManager/MicoManager";
+import Error from "./Error/Error";
+import Home from "./Home/Home";
 
 class App extends Component {
   constructor() {
@@ -13,13 +17,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Mico Manager</h1>
-        </header>
-          <MicoManager project={this.state.projectid} />
-      </div>
+<BrowserRouter>
+        <Switch>
+          <Route path="/" render={props => <Home {...props} />} exact />
+          <Route path="/createnew/:projectname" render={props => <CreateMico {...props} />} exact />
+          <Route path="/manage/:projectid" render={props => <MicoManager {...props} />} exact />
+          <Route component={Error} />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
