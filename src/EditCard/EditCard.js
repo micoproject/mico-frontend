@@ -7,19 +7,21 @@ import {
   RIENumber,
   RIETags,
   RIESelect
-} from "riek";
+} from "@attently/riek";
 
 class EditCard extends Component {
   // Adds a class constructor that assigns the initial state values:
   constructor(props) {
     super();
+    console.log('card data :',props.card.data);
     this.state = {
       card: {
         laneid: props.card.laneid,
         cardid: props.card.cardid,
         data: {
           title: props.card.data.title || "",
-          description: props.card.data.description || ""
+          description: props.card.data.description || "",
+          phase: props.card.data.phase || "CARDPHASE_DRAFT",
         }
       }
     };
@@ -36,7 +38,7 @@ class EditCard extends Component {
   }
 
   setCardProperty(prop) {
-    debugger;
+    //debugger;
     const name = Object.keys(prop)[0];
     this.setState({
       card: update(this.state.card, {
@@ -46,7 +48,7 @@ class EditCard extends Component {
   }
 
   setCardTitle(e) {
-    debugger;
+    //debugger;
     this.setState({
       card: update(this.state.card, {
         data: { title: { $set: e.target.value } }
@@ -70,7 +72,7 @@ class EditCard extends Component {
     return (
       <div className="card">
         <header className="card-header">
-          <p class="card-header-title">
+          <p className="card-header-title">
             <RIEInput
               value={this.state.card.data.title}
               change={this.setCardProperty}
@@ -78,12 +80,6 @@ class EditCard extends Component {
               classEditing="input"
             />
           </p>
-          {/* {title} */}
-          {/* <a href="#" className="card-header-icon" aria-label="more options">
-            <span className="icon">
-              <i className="fas fa-angle-down" aria-hidden="true" />
-            </span>
-          </a> */}
         </header>
 
         <div className="card-content">
@@ -94,19 +90,12 @@ class EditCard extends Component {
                   value={this.state.card.data.description}
                   change={this.setCardProperty}
                   propName="description"
-                  classEditing="input"
-                  rows="10"
+                  classEditing="textarea"
+                  rows={10}
                 />
-
-                {/* <input
-                  className="input"
-                  type="text"
-                  placeholder="card title"
-                  value={this.state.card.data.description}
-                  onChange={this.setCardDescription}
-                /> */}
               </div>
             </div>
+            <div>{this.state.card.data.phase}</div>
 
             <div className="field is-grouped">
               <div className="control">

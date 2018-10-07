@@ -2,6 +2,29 @@
 # yarn lockfile v1
 
 
+"@attently/riek@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@attently/riek/-/riek-2.0.1.tgz#0052785a5bab1ca7a99236f135624d39e6619024"
+  dependencies:
+    debug "^2.6.8"
+    prop-types "^15.5.10"
+
+"@fortawesome/fontawesome-common-types@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.4.tgz#7c560ff732c6c7c7c179ae25227ce5449e6f6d65"
+
+"@fortawesome/fontawesome-svg-core@^1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.4.tgz#2e40c65e66c7ad5aabc179a2d7c5827b1599905c"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.4"
+
+"@fortawesome/free-solid-svg-icons@^5.3.1":
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.3.1.tgz#9660bece3c4850d58f1653e26c1693487ff74b08"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.4"
+
 abab@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -6250,13 +6273,6 @@ restore-cursor@^2.0.0:
 ret@~0.1.10:
   version "0.1.15"
   resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
-
-riek@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/riek/-/riek-1.1.0.tgz#ea854db4a4ed096230ff04382508d6dfbe295994"
-  dependencies:
-    debug "^2.6.8"
-    prop-types "^15.5.10"
 
 right-align@^0.1.1:
   version "0.1.3"

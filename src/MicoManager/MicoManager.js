@@ -5,6 +5,7 @@ import Board from "react-trello";
 import ipfsAPI from "ipfs-mini";
 import update from "immutability-helper";
 import EditCard from "../EditCard/EditCard";
+import LaneHeader from "../LaneHeader/LaneHeader";
 import isIpfs from "is-ipfs";
 
 class MicoManager extends Component {
@@ -28,6 +29,8 @@ class MicoManager extends Component {
 
     this.getCard = this.getCard.bind(this);
     this.saveCard = this.saveCard.bind(this);
+
+    this.saveLane = this.saveLane.bind(this);
 
     this.state = { loading: true };
     this.projectid = props.match.params.projectid;
@@ -103,16 +106,28 @@ class MicoManager extends Component {
     this.handleCloseModal();
   }
 
+  saveLane(newLane) {
+    var lane = this.state.boarddata.lanes.findIndex(item => {
+      return item.id === newLane.id;
+    });
+    const newBoardState = update(this.state.boarddata, {
+      lanes: {
+        [lane]: {
+          title: { $set: newLane.title }
+        }
+      }
+    });
+    this.setState({
+      boarddata: newBoardState
+    });
+  }
+
   onCardClick(cardId, metadata, laneId) {
     var c = this.getCard(laneId, cardId);
     this.setState({
       editCard: true,
       editedCard: { laneid: laneId, cardid: cardId, data: c }
-      //editedCardData: c
     });
-    // this.closeModalListener = document.addEventListener("keyup", e => {
-    //   if (e.keyCode === 27) this.handleCloseModal();
-    // });
   }
 
   handleCloseModal() {
@@ -144,15 +159,16 @@ class MicoManager extends Component {
     } else {
       return (
         <div>
-          <section className="section">
+          {/* <section className="section"> */}
             <Board
               data={this.state.boarddata}
               draggable
               editable
               onDataChange={this.dataChanged}
               onCardClick={this.onCardClick}
+              customLaneHeader={<LaneHeader onSaveLane={this.saveLane} />}
             />
-          </section>
+          {/* </section> */}
           {this.state.editCard && (
             <div
               id="modal-card2"
