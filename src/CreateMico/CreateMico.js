@@ -98,35 +98,35 @@ class CreateMico extends Component {
                 title: this.state.firstPhaseName,
                 label: this.state.firstPhaseRatio,
                 cards: [
-                  {
-                    id: "Fase",
-                    title: "Landingpage",
-                    description: "Create a landingpage for MICO",
-                    label: "open for funding",
-                    price: "10 ETH"
-                  },
-                  {
-                    id: "Card2",
-                    title: "Build MICO board",
-                    description:
-                      "Build MICO manager board. Refer to <...> for more details",
-                    label: "draft",
-                    metadata: { sha: "be312a1" }
-                  }
+                //   {
+                //     id: "Fase",
+                //     title: "Landingpage",
+                //     description: "Create a landingpage for MICO",
+                //     label: "open for funding",
+                //     price: "10 ETH"
+                //   },
+                //   {
+                //     id: "Card2",
+                //     title: "Build MICO board",
+                //     description:
+                //       "Build MICO manager board. Refer to <...> for more details",
+                //     label: "draft",
+                //     metadata: { sha: "be312a1" }
+                //   }
                 ]
               },
-              {
-                id: "lane2",
-                title: "Phase 1",
-                label: "0/0",
-                cards: []
-              },
-              {
-                id: "lane3",
-                title: "Phase 2",
-                label: "0/0",
-                cards: []
-              }
+            //   {
+            //     id: "lane2",
+            //     title: "Phase 1",
+            //     label: "0/0",
+            //     cards: []
+            //   },
+            //   {
+            //     id: "lane3",
+            //     title: "Phase 2",
+            //     label: "0/0",
+            //     cards: []
+            //   }
             ]
           }
         };
